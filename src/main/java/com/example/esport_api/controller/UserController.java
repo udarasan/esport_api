@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 /**
  * @author udarasan
@@ -36,11 +35,11 @@ public class UserController {
                 responseDTO.setMessage("success");
                 responseDTO.setData(userDTO);
                 return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
-            } else if (res==404) {
-                responseDTO.setCode(VarList.Not_Found);
+            } else if (res==406) {
+                responseDTO.setCode(VarList.Not_Acceptable);
                 responseDTO.setMessage("Username Already Use");
                 responseDTO.setData(null);
-                return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(responseDTO, HttpStatus.NOT_ACCEPTABLE);
             } else {
                 responseDTO.setCode(VarList.Bad_Gateway);
                 responseDTO.setMessage("Error");
@@ -51,7 +50,6 @@ public class UserController {
             responseDTO.setCode(VarList.Internal_Server_Error);
             responseDTO.setMessage(e.getMessage());
             responseDTO.setData(null);
-            System.out.println(e);
             return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }/*

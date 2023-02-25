@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserDetailsService {
     public int saveUser(UserDTO userDTO) {
         if (userRepository.existsByUsername(userDTO.getUsername())) {
             auditService.saveAudit("saveUser","PASS:Save User Now"+userDTO.getName());
-            return VarList.Not_Found;
+            return VarList.Not_Acceptable;
         } else {
             userRepository.save(modelMapper.map(userDTO, User.class));
             auditService.saveAudit("saveUser","FAIL:Save User Now"+userDTO.getName());
