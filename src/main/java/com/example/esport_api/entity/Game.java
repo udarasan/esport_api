@@ -22,4 +22,5 @@ public class Game {
     private String gameName;
     private String imageUrl;
     private String description;
+
 }
