@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 public class EventDTO {
     private int eventId;
-    private GameDTO gameId;
+    private String gameId;
     private String eventType;
     private String eventName;
     private Date startTime;

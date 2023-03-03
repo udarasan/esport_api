@@ -22,7 +22,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int eventId;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Game gameId;
     private String eventType;
     private String eventName;
@@ -31,6 +31,7 @@ public class Event {
     private String country;
     private String location;
     private String organizer;
+    @Column(columnDefinition="TEXT")
     private String description;
     private String eventImage;
 
