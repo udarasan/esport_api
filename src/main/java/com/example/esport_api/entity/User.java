@@ -31,6 +31,10 @@ public class User implements Serializable {
     @JoinColumn(name = "roleCode", referencedColumnName = "UserRoleCode")
     private UserRole roleCode;
 
+    @OneToOne
+    @JoinColumn(name = "teamId", referencedColumnName = "teamId")
+    private Team teamId;
+
 
 
 }

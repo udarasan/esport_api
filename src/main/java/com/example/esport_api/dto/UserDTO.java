@@ -20,5 +20,6 @@ public class UserDTO {
     private String idPhoto;
     private String email;
     private String name;
-    private UserRoleDTO roleCode;
+    private String roleCode;
+    private String teamId;
 }
