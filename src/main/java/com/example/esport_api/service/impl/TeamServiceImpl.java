@@ -47,6 +47,6 @@ public class TeamServiceImpl implements TeamService {
         List<Team> all =teamRepository.findAll();
         return modelMapper.map(all, new TypeToken<ArrayList<TeamDTO>>() {
         }.getType());
-    
+
     }
 }
