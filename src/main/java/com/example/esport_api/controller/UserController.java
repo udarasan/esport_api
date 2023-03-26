@@ -1,5 +1,6 @@
 package com.example.esport_api.controller;
 
+import com.example.esport_api.dto.EventDTO;
 import com.example.esport_api.dto.ResponseDTO;
 import com.example.esport_api.dto.UserDTO;
 import com.example.esport_api.service.impl.UserServiceImpl;
@@ -52,7 +53,61 @@ public class UserController {
             responseDTO.setData(null);
             return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }/*
+    }
+
+    @PostMapping("/updateUser")
+    public ResponseEntity<ResponseDTO> updateUser(@RequestBody UserDTO userDTO) {
+            try {
+                int res = userService.updateUser(userDTO);
+                if (res==201) {
+                    responseDTO.setCode(VarList.Created);
+                    responseDTO.setMessage("success");
+                    responseDTO.setData(userDTO);
+                    return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+                } else if (res==406) {
+                    responseDTO.setCode(VarList.Not_Acceptable);
+                    responseDTO.setMessage("Username Not Available ");
+                    responseDTO.setData(null);
+                    return new ResponseEntity<>(responseDTO, HttpStatus.NOT_ACCEPTABLE);
+                } else {
+                    responseDTO.setCode(VarList.Bad_Gateway);
+                    responseDTO.setMessage("Error");
+                    responseDTO.setData(null);
+                    return new ResponseEntity<>(responseDTO, HttpStatus.BAD_GATEWAY);
+                }
+            } catch (Exception e) {
+                responseDTO.setCode(VarList.Internal_Server_Error);
+                responseDTO.setMessage(e.getMessage());
+                responseDTO.setData(null);
+                return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+    }
+    @GetMapping("/getOneUser")
+    public ResponseEntity<ResponseDTO> searchUser(@RequestParam String username) {
+        try {
+            UserDTO userDTO = userService.searchUser(username);
+            if(userDTO==null){
+                responseDTO.setCode(VarList.Bad_Gateway);
+                responseDTO.setMessage("No Data");
+                responseDTO.setData(null);
+                return new ResponseEntity<>(responseDTO, HttpStatus.BAD_GATEWAY);
+
+            }
+            responseDTO.setCode(VarList.Created);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(userDTO);
+            return new ResponseEntity<>(responseDTO, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.Internal_Server_Error);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setData(e);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
+    /*
     @PostMapping(value = "/sendOTP")
     public ResponseEntity<ResponseDTO> sendOTP(@RequestParam String email) {
         System.out.println(email);

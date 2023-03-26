@@ -73,9 +73,34 @@ public class EventController {
         }
 
     }
+    @GetMapping("/getOneEvent")
+    public ResponseEntity<ResponseDTO> getOneEvent(@RequestParam int eventId) {
+        try {
+
+            //System.out.println(role);
+            EventDTO eventDTOS = eventService.getOneEvent(eventId);
+            if(eventDTOS==null){
+                responseDTO.setCode(VarList.Bad_Gateway);
+                responseDTO.setMessage("No Data");
+                responseDTO.setData(null);
+                return new ResponseEntity<>(responseDTO, HttpStatus.BAD_GATEWAY);
+
+            }
+            responseDTO.setCode(VarList.Created);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(eventDTOS);
+            return new ResponseEntity<>(responseDTO, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.Internal_Server_Error);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setData(e);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
 
     @DeleteMapping(value = "/deleteEvent")
-    public ResponseEntity<ResponseDTO> deleteEvent(@RequestParam int eventId) {
+    public ResponseEntity<ResponseDTO> deleteEvent(@PathVariable int eventId) {
         try {
             int res = eventService.deleteEvent(eventId);
             if (res == 201) {

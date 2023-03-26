@@ -20,7 +20,7 @@ public class EsportApiApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+                registry.addMapping("/**").allowedOrigins("http://localhost:4200","http://localhost:4201","http://localhost:56160");
             }
 
         };

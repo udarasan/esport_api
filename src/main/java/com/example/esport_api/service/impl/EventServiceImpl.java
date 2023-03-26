@@ -68,4 +68,15 @@ public class EventServiceImpl implements EventService {
             return VarList.Bad_Request;
         }
     }
+
+    @Override
+    public EventDTO getOneEvent(int eventId) {
+        if (eventRepository.existsById(eventId)) {
+            Event event=eventRepository.findById(eventId).orElse(null);
+            EventDTO eventDTO = modelMapper.map(event,EventDTO.class);
+            return eventDTO;
+        }else {
+            return null;
+        }
+    }
 }

@@ -14,4 +14,6 @@ public interface EventService {
      int saveEvent(EventDTO eventDTO);
      int deleteEvent(int eventId);
      int updateEvent(EventDTO eventDTO);
+
+     EventDTO getOneEvent(int eventId);
 }
