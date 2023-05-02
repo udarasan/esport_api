@@ -3,16 +3,14 @@ package com.example.esport_api.controller;
 import com.example.esport_api.dto.EventRegistrationDTO;
 import com.example.esport_api.dto.GameDTO;
 import com.example.esport_api.dto.ResponseDTO;
+import com.example.esport_api.entity.User;
 import com.example.esport_api.service.EventRegService;
 import com.example.esport_api.service.GameService;
 import com.example.esport_api.utill.VarList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author udarasan
@@ -29,8 +27,11 @@ public class EventRegistrationController {
     private EventRegService eventRegService;
 
     @PostMapping(value = "/add")
-    public ResponseEntity<ResponseDTO> addGame (@RequestBody EventRegistrationDTO eventRegistrationDTO) {
+    public ResponseEntity<ResponseDTO> addGame (@RequestBody EventRegistrationDTO eventRegistrationDTO, @RequestAttribute String username) {
         try {
+            User s = new User();
+            s.setUsername(username);
+            eventRegistrationDTO.setUsername(s);
             int res = eventRegService.saveEventRegistration(eventRegistrationDTO);
             if (res==201) {
                 responseDTO.setCode(VarList.Created);

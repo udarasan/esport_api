@@ -18,6 +18,8 @@ public class EventDTO {
     private int eventId;
     private String gameId;
     private String eventType;
+    private String isPaid;
+    private String payment;
     private String eventName;
     private Date startTime;
     private Date endTime;

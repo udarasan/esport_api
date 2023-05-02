@@ -25,6 +25,8 @@ public class Event {
     @OneToOne
     private Game gameId;
     private String eventType;
+    private String isPaid;
+    private String payment;
     private String eventName;
     private Date startTime;
     private Date endTime;
