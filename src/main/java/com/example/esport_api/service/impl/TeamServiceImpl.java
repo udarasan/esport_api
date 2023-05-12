@@ -49,4 +49,10 @@ public class TeamServiceImpl implements TeamService {
         }.getType());
 
     }
+
+    @Override
+    public TeamDTO getLastTeamByID() {
+        Team lastTeam=teamRepository.getLastTeam();
+        return modelMapper.map(lastTeam,TeamDTO.class);
+    }
 }

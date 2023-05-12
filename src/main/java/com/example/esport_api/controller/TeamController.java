@@ -3,6 +3,7 @@ package com.example.esport_api.controller;
 import com.example.esport_api.dto.GameDTO;
 import com.example.esport_api.dto.ResponseDTO;
 import com.example.esport_api.dto.TeamDTO;
+import com.example.esport_api.dto.UserDTO;
 import com.example.esport_api.service.GameService;
 import com.example.esport_api.service.TeamService;
 import com.example.esport_api.utill.VarList;
@@ -72,5 +73,26 @@ public class TeamController {
             return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+    @GetMapping("/getLastTeamId")
+    public ResponseEntity<ResponseDTO> searchUser() {
+        try {
+            TeamDTO userDTO = teamService.getLastTeamByID();
+            if(userDTO==null){
+                responseDTO.setCode(VarList.Bad_Gateway);
+                responseDTO.setMessage("No Data");
+                responseDTO.setData(null);
+                return new ResponseEntity<>(responseDTO, HttpStatus.BAD_GATEWAY);
+            }
+            responseDTO.setCode(VarList.Created);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(userDTO);
+            return new ResponseEntity<>(responseDTO, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.Internal_Server_Error);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setData(e);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

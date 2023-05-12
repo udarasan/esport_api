@@ -14,4 +14,5 @@ public interface TeamService {
     int saveTeam(TeamDTO teamDTO);
     List<TeamDTO> getAllTeams();
 
+    TeamDTO getLastTeamByID();
 }

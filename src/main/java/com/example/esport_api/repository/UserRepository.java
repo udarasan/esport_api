@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 /**
  * @author udarasan
  * @TimeStamp 2023-02-04 09:37
@@ -23,4 +25,8 @@ public interface UserRepository extends JpaRepository<User,Long> {
     void updateUser(String address,String email,String id_photo,String name,
                     String password,String phone_no1,String phone_no2,
                     String remarks,String role_code,String status,String username);
+
+    @Query(value = "select * from systemuser where role_code =?1",nativeQuery = true)
+    List<User> findAllByRole(int i);
+
 }

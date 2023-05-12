@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserDetailsService {
 
 
     public List<UserDTO> getAllUsers() {
-        List<User> users=userRepository.findAll();
+        List<User> users=userRepository.findAllByRole(1);
         return modelMapper.map(users, new TypeToken<ArrayList<UserDTO>>() {
         }.getType());
     }

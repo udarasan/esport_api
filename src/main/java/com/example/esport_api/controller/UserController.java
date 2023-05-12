@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * @author udarasan
@@ -84,6 +86,28 @@ public class UserController {
     }
     @GetMapping("/getOneUser")
     public ResponseEntity<ResponseDTO> searchUser(@RequestParam String username) {
+        try {
+            UserDTO userDTO = userService.searchUser(username);
+            if(userDTO==null){
+                responseDTO.setCode(VarList.Bad_Gateway);
+                responseDTO.setMessage("No Data");
+                responseDTO.setData(null);
+                return new ResponseEntity<>(responseDTO, HttpStatus.BAD_GATEWAY);
+
+            }
+            responseDTO.setCode(VarList.Created);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(userDTO);
+            return new ResponseEntity<>(responseDTO, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.Internal_Server_Error);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setData(e);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/getOneUserByToken")
+    public ResponseEntity<ResponseDTO> getOneUser(@RequestAttribute String username) {
         try {
             UserDTO userDTO = userService.searchUser(username);
             if(userDTO==null){
@@ -236,8 +260,8 @@ public class UserController {
             return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @GetMapping("/getAllUsers")
+  */
+    @GetMapping("/getAllPayerUsers")
     public ResponseEntity<ResponseDTO> getAllUsers() {
         System.out.println("username");
         try{
@@ -256,7 +280,7 @@ public class UserController {
         }
 
     }
-    */
+
 }
 
 
