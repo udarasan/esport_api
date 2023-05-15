@@ -4,13 +4,19 @@ import com.example.esport_api.dto.GameDTO;
 import com.example.esport_api.dto.ResponseDTO;
 import com.example.esport_api.dto.UserDTO;
 import com.example.esport_api.service.GameService;
+import com.example.esport_api.utill.FileUploadUtil;
 import com.example.esport_api.utill.VarList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author udarasan
@@ -71,6 +77,20 @@ public class GameController {
             responseDTO.setData(e);
             return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
+    }
+    @PostMapping("/upload")
+    public void saveImage(@RequestParam("files") MultipartFile[] files){
+        String uploadDir="gameImages";
+        Arrays.asList(files).stream().forEach(file->{
+            String fileName= StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+            System.out.println(fileName);
+            try {
+                FileUploadUtil.saveFile(uploadDir,fileName,file);
+            }catch (IOException ioException){
+
+            }
+        });
 
     }
 }

@@ -1,17 +1,24 @@
 package com.example.esport_api.controller;
 
+import com.example.esport_api.dto.CountDTO;
 import com.example.esport_api.dto.EventDTO;
 import com.example.esport_api.dto.GameDTO;
 import com.example.esport_api.dto.ResponseDTO;
 import com.example.esport_api.service.EventService;
 import com.example.esport_api.service.GameService;
+import com.example.esport_api.utill.FileUploadUtil;
 import com.example.esport_api.utill.VarList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author udarasan
@@ -26,6 +33,20 @@ public class EventController {
 
     @Autowired
     private EventService eventService;
+    @PostMapping("/upload")
+    public void saveImage(@RequestParam("files") MultipartFile[] files){
+        String uploadDir="eventImages";
+        Arrays.asList(files).stream().forEach(file->{
+            String fileName= StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+            System.out.println(fileName);
+            try {
+                FileUploadUtil.saveFile(uploadDir,fileName,file);
+            }catch (IOException ioException){
+
+            }
+        });
+
+    }
 
     @PostMapping(value = "/add")
     public ResponseEntity<ResponseDTO> addEvent(@RequestBody EventDTO eventDTO) {
@@ -61,6 +82,24 @@ public class EventController {
 
             //System.out.println(role);
             List<EventDTO> eventDTOS = eventService.getAllEventDetails();
+            responseDTO.setCode(VarList.Created);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(eventDTOS);
+            return new ResponseEntity<>(responseDTO, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.Internal_Server_Error);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setData(e);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    @GetMapping("/count")
+    public ResponseEntity<ResponseDTO> count() {
+        try {
+
+            //System.out.println(role);
+            CountDTO eventDTOS = eventService.count();
             responseDTO.setCode(VarList.Created);
             responseDTO.setMessage("Success");
             responseDTO.setData(eventDTOS);

@@ -1,9 +1,12 @@
 package com.example.esport_api.service.impl;
 
+import com.example.esport_api.dto.CountDTO;
 import com.example.esport_api.dto.EventDTO;
 import com.example.esport_api.dto.UserDTO;
 import com.example.esport_api.entity.Event;
 import com.example.esport_api.repository.EventRepository;
+import com.example.esport_api.repository.GameRepository;
+import com.example.esport_api.repository.TeamRepository;
 import com.example.esport_api.service.EventService;
 import com.example.esport_api.utill.VarList;
 import org.modelmapper.ModelMapper;
@@ -24,6 +27,10 @@ public class EventServiceImpl implements EventService {
 
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private TeamRepository  teamRepository;
+    @Autowired
+    private GameRepository gameRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -78,5 +85,14 @@ public class EventServiceImpl implements EventService {
         }else {
             return null;
         }
+    }
+
+    @Override
+    public CountDTO count() {
+        CountDTO  countDTO=new CountDTO();
+        countDTO.setEvent(eventRepository.count());
+        countDTO.setTeam(teamRepository.count());
+        countDTO.setPlayer(gameRepository.count());
+        return countDTO;
     }
 }

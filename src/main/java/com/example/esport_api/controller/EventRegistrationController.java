@@ -1,5 +1,6 @@
 package com.example.esport_api.controller;
 
+import com.example.esport_api.dto.EventDTO;
 import com.example.esport_api.dto.EventRegistrationDTO;
 import com.example.esport_api.dto.GameDTO;
 import com.example.esport_api.dto.ResponseDTO;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author udarasan
@@ -55,5 +58,41 @@ public class EventRegistrationController {
             responseDTO.setData(null);
             return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    @GetMapping("/getAllEventsReg")
+    public ResponseEntity<ResponseDTO> getAllEvents() {
+        try {
+
+            //System.out.println(role);
+            List<EventRegistrationDTO> eventDTOS = eventRegService.getAllEventRegDetails();
+            responseDTO.setCode(VarList.Created);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(eventDTOS);
+            return new ResponseEntity<>(responseDTO, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.Internal_Server_Error);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setData(e);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    @GetMapping("/getAllEventsRegByUserName")
+    public ResponseEntity<ResponseDTO> getAllEventsRegByUserName(@RequestAttribute String username) {
+        try {
+
+            //System.out.println(role);
+            List<EventRegistrationDTO> eventDTOS = eventRegService.getAllEventRegDetailsByUserName(username);
+            responseDTO.setCode(VarList.Created);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(eventDTOS);
+            return new ResponseEntity<>(responseDTO, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.Internal_Server_Error);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setData(e);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 }
