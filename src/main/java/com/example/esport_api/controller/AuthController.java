@@ -9,6 +9,8 @@ import com.example.esport_api.utill.VarList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/auth")
 public class AuthController {
+    @Autowired
+    private JavaMailSenderImpl javaMailSender;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -62,7 +66,8 @@ public class AuthController {
             AuthDTO authDTO = new AuthDTO();
             authDTO.setUsername(userDTO1.getUsername());
             authDTO.setToken(token);
-
+            //sendmail
+            sendMail();
             responseDTO.setCode(VarList.Created);
             responseDTO.setMessage("Success");
             responseDTO.setData(authDTO);
@@ -72,5 +77,15 @@ public class AuthController {
         responseDTO.setMessage("Authorization Failure! Please Try Again");
         responseDTO.setData(null);
         return new ResponseEntity<>(responseDTO, HttpStatus.CONFLICT);
+    }
+
+    public void sendMail(){
+        SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+        simpleMailMessage.setFrom("esoftassigmenets@gmail.com");
+        simpleMailMessage.setTo("udarassanjeewa@gmail.com");
+        simpleMailMessage.setSubject("User Login Detection");
+        simpleMailMessage.setText("Your are Login to Your Account");
+        javaMailSender.send(simpleMailMessage);
+
     }
 }

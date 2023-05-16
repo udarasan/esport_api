@@ -15,6 +15,7 @@ public class EsportApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(EsportApiApplication.class, args);
     }
+
     @Bean
     public WebMvcConfigurer configure() {
         return new WebMvcConfigurer() {
