@@ -14,11 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-03-04 16:35
- * @ProjectDetails esport_api
- */
+
 @RestController
 @RequestMapping("api/v1/team")
 public class TeamController {

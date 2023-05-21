@@ -5,11 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-02-03 17:44
- * @ProjectDetails esport_api
- */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

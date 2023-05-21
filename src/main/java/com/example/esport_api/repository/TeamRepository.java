@@ -6,11 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-03-04 16:32
- * @ProjectDetails esport_api
- */
+
 @Repository
 public interface TeamRepository extends JpaRepository<Team,Integer> {
     @Query(value = "SELECT * FROM team ORDER BY team_id DESC LIMIT 1",nativeQuery = true)

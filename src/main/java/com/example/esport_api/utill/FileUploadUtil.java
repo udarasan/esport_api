@@ -1,10 +1,5 @@
 package com.example.esport_api.utill;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-05-15 11:51
- * @ProjectDetails esport_api
- */
 
 import org.springframework.web.multipart.MultipartFile;
 

@@ -18,11 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-02-04 11:04
- * @ProjectDetails esport_api
- */
+
 
 @RestController
 @RequestMapping("api/v1/auth")

@@ -6,11 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-03-03 10:57
- * @ProjectDetails esport_api
- */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

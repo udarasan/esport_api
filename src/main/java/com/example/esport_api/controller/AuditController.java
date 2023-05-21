@@ -16,11 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-05-15 23:47
- * @ProjectDetails esport_api
- */
+
 @RestController
 @RequestMapping("api/v1/audit")
 public class AuditController {

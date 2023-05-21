@@ -20,11 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-03-03 10:47
- * @ProjectDetails esport_api
- */
+
 @RestController
 @RequestMapping("api/v1/event")
 public class EventController {

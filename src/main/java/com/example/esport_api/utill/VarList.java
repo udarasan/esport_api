@@ -1,10 +1,6 @@
 package com.example.esport_api.utill;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-02-04 10:17
- * @ProjectDetails esport_api
- */
+
 public class VarList {
     public static final int Continue = 100;
     public static final int Switching_Protocols = 101;

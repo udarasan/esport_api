@@ -8,11 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-03-03 15:54
- * @ProjectDetails esport_api
- */
+
 @Repository
 public interface EventRegistrationRepository extends JpaRepository<EventRegistration,Integer> {
     //@Query(value = "SELECT * FROM eventregistration WHERE username=?1",nativeQuery = true)

@@ -7,11 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-02-04 09:39
- * @ProjectDetails esport_api
- */
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

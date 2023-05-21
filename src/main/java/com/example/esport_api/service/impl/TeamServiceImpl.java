@@ -16,11 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-03-04 16:33
- * @ProjectDetails esport_api
- */
+
 @Service
 public class TeamServiceImpl implements TeamService {
     @Autowired

@@ -7,11 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-02-04 09:38
- * @ProjectDetails esport_api
- */
 @Entity
 @Table(name = "systemuser")
 @AllArgsConstructor

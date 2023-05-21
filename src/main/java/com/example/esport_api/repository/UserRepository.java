@@ -7,11 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-02-04 09:37
- * @ProjectDetails esport_api
- */
 public interface UserRepository extends JpaRepository<User,Long> {
 
     User findByUsername(String userName);

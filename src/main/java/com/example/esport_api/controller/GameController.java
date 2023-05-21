@@ -18,11 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-02-25 13:36
- * @ProjectDetails esport_api
- */
+
 @RestController
 @RequestMapping("api/v1/game")
 public class GameController {

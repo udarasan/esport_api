@@ -13,11 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-02-04 09:42
- * @ProjectDetails esport_api
- */
+
 
 @EnableWebSecurity
 @Configuration

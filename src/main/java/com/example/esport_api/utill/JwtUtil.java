@@ -15,11 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-02-04 10:13
- * @ProjectDetails esport_api
- */
 @Component
 @PropertySource(ignoreResourceNotFound = true, value = "classpath:otherprops.properties")
 public class JwtUtil implements Serializable {

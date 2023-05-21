@@ -17,11 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-03-03 11:18
- * @ProjectDetails esport_api
- */
+
 @Service
 public class EventServiceImpl implements EventService {
 

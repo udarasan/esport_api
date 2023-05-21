@@ -5,11 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * @author udarasan
- * @TimeStamp 2023-02-04 09:45
- * @ProjectDetails esport_api
- */
+
 @Entity
 @Table(name = "audit_section")
 @AllArgsConstructor
